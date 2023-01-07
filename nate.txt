@@ -1,0 +1,197 @@
+Challenge: 06-range
+  
+Difficulty: basic
+
+Prompt:
+
+- Write a function called range that accepts two integers as arguments and returns an array of integers starting with the first argument up to one less than the second argument.
+- The range function must be called with the first argument less than or equal to the second argument, otherwise return the string "First argument must be less than second".
+
+Examples:
+
+range(1,4) //=> [1,2,3]
+range(-2, 3) //=> [-2,-1,0,1,2]
+range(1,1) //=> []
+range(5,2) //=> "First argument must be less than second"
+-----------------------------------------------------------------*/
+// Your solution for 06-range here:10
+
+function range(start, finish) {
+if (start > finish) return 'First argument must be less than second'
+
+var range = []
+for (var n = start; n < finish; n++) {
+  range.push(n)
+}
+
+return range
+}
+
+/*-----------------------------------------------------------------
+Challenge: 07-reverseUpcaseString
+
+Difficulty: Basic
+
+Prompt:
+
+- Write a function called reverseUpcaseString that accepts a single string argument, then returns the string with its characters in reverse orderand converts all characters to uppercase.
+
+Examples:
+
+reverseUpcaseString("SEI Rocks!"); //=> "!SKCOR IES" 
+-----------------------------------------------------------------*/
+// Your solution for 07-reverseUpcaseString here:
+
+function reverseUpcaseString(str) {
+var results = ''
+for (var i = 0; i < str.length; i++) {
+  // can use square brackets to access chars in a string
+  // but using the charAt() method is preferred
+  results = str.charAt(i).toUpperCase() + results
+}
+return results
+}
+
+// function reverseUpcaseString(str) {
+//   // convert string to array, reverse, map and finally join it
+//   return str.split('').reverse().map(function(char) {
+//     return char.toUpperCase();
+//   }).join('');
+// }
+
+// function reverseUpcaseString(str) {
+//   // above version using an arrow function
+//   return str.split('').reverse().map(c => c.toUpperCase()).join('');
+// }
+
+/*-----------------------------------------------------------------
+Challenge: 08-removeEnds
+
+Difficulty: Basic
+
+Prompt:
+
+- Write a function called removeEnds that accepts a single string argument, then returns the a string with the first and last characters removed.
+- If the length of the string argument is less than 3, return an empty string.
+
+Examples:
+
+removeEnds('SEI Rocks!'); //=> "DI Rocks"
+removeEnds('a'); //=> "" (empty string)
+-----------------------------------------------------------------*/
+// Your solution for 08-removeEnds here:
+
+/*--- Using for loop ---*/
+function removeEnds(str) {
+if (str.length < 3) return ''
+var result = ''
+for (var i = 1; i < str.length - 1; i++) {
+  result += str.charAt(i)
+}
+return result
+}
+
+/*--- Using substr String method ---*/
+// function removeEnds(str) {
+//   if (str.length < 3) return '';
+//   return str.substr(1, str.length - 2);
+// }
+
+/*-----------------------------------------------------------------
+Challenge: 09-charCount
+
+Difficulty: Basic
+
+Prompt:
+
+- Write a function named charCount that accepts a single string argument and returns an object that represents the count of each character in the string.
+- The returned object should have keys that represent the character with its value set to the how many times the character appears in the string argument.
+- Upper and lower case characters should be counted separately.
+- Space characters should be count too.
+
+Examples:
+
+charCount('hello') //=> { h: 1, e: 1, l: 2, o: 1 }
+charCount('Today is fantastic!') //=> { T: 1, o: 1, d: 1, a: 3, y: 1, ' ': 2, i: 2, s: 2, f: 1, n: 1, t: 2, c: 1, '!': 1 }
+-----------------------------------------------------------------*/
+// Your solution for 09-charCount here:
+
+/*--- using a for loop ---*/
+function charCount(str) {
+var result = {}
+for (var i = 0; i < str.length; i++) {
+  var char = str.charAt(i)
+  // already seen this char?
+  if (result[char]) {
+    result[char]++
+  } else {
+    result[char] = 1
+  }
+}
+return result
+}
+
+/*--- convert str to array and use reduce with a ternary ---*/
+// function charCount(str) {
+//   return str.split('').reduce(function(countObj, char) {
+//     countObj[char] = countObj[char] ? ++countObj[char] : 1;
+//     return countObj;
+//   }, {});
+// }
+
+/*-----------------------------------------------------------------
+Challenge: 10-formatWithPadding
+
+Difficulty: Basic
+
+Prompt:
+
+- Write a function called formatWithPadding that accepts three arguments:
+  - A numeric argument (an integer) representing the number to format.
+  - A string argument (a single character) representing the character used to "pad" the returned string to a minimum length.
+  - Another numeric argument (an integer) representing the length to "pad" the returned string to.
+- The function should return the integer as a string, "left padded" to the length of the 3rd arg using the character provided in the 2nd arg.
+- If the length of the integer converted to a string is equal or greater than the 3rd argument, no padding is needed - just return the integer as a string.
+
+Examples:
+
+formatWithPadding(123, '0', 5); //=> "00123"
+formatWithPadding(42, '*', 10); //=> "********42"
+formatWithPadding(1234, '*', 3); //=> "1234"
+-----------------------------------------------------------------*/
+// Your solution for 10-formatWithPadding here:
+
+/*--- Using for while loop ---*/
+function formatWithPadding(int, char, length) {
+var result = int.toFixed(0)
+while (result.length < length) {
+  result = char + result
+}
+return result
+}
+
+/*--- Using the padStart String method ---*/
+// function formatWithPadding(int, char, length) {
+//   return int.toFixed(0).padStart(length, char);
+// }
+
+/*-----------------------------------------------------------------
+Challenge: 11-isPalindrome
+
+Difficulty: Intermediate
+
+Prompt:
+
+- Write a function called isPalindrome that accepts a single string argument, then returns true or false depending upon whether or not the string is a palindrome.
+- A palindrome is a word or phrase that are the same forward or backward.
+- Casing and spaces are not included when considering whether or not a string is a palindrome.
+- If the length of the string is 0 or 1, return true.
+
+Examples:
+
+isPalindrome('SEI Rocks'); //=> false
+isPalindrome('rotor'); //=> true
+isPalindrome('A nut for a jar of tuna'); //=> true
+isPalindrome(''); //=> true
+-----------------------------------------------------------------*/
+// Your solution for 11-isPalindrome here:
